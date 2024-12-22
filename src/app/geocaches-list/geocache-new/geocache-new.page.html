@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Enregistrer une nouvelle géocache</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Formulaire de création d'une nouvelle géocache -->
+   <ion-item>
+    <ion-label position="floating">Titre</ion-label>
+    <ion-input [(ngModel)]="geocache.title"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Description</ion-label>
+    <ion-textarea [(ngModel)]="geocache.description"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Image (url) (optionnel)</ion-label>
+    <ion-input [(ngModel)]="geocache.pictureLink"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Latitude (Compris entre -90° et 90°)</ion-label>
+    <ion-input [(ngModel)]="geocache.latitude"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Longitude (Compris entre -180° et 180°)</ion-label>
+    <ion-input [(ngModel)]="geocache.longitude"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Indice</ion-label>
+    <ion-input [(ngModel)]="geocache.hint"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Reponse</ion-label>
+    <ion-input [(ngModel)]="geocache.answer"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Ville</ion-label>
+    <ion-input [(ngModel)]="geocache.city"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Pays</ion-label>
+    <ion-input [(ngModel)]="geocache.country"></ion-input>
+  </ion-item>
+
+  <p class="text-center">
+    <ion-button (click)="add()">Envoyer</ion-button>
+  </p>
+
+
+
+
+</ion-content>
+

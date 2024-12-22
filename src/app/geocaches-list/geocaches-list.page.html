@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Mes géocaches</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <h2>Liste des géocaches</h2>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" *ngFor="let cache of caches">
+
+        <ion-card>
+          <!-- image de la géocache -->
+
+          <!-- affichage de l'image par défaut si l'image n'est pas renseignée -->
+          <div *ngIf="cache.pictureLink === '' || cache.pictureLink === null; else cacheImage">
+            <ion-img src="https://ionicframework.com/docs/img/demos/card-media.png" alt="geocache picture"></ion-img>
+          </div>
+
+          <!-- affichage de l'image de la géocache si elle est renseignée -->
+          <ng-template #cacheImage>
+            <ion-img [src]="cache.pictureLink" alt="geocache picture"></ion-img>
+          </ng-template>
+
+
+          <ion-card-header>
+            <ion-card-title>{{cache.title}}</ion-card-title>
+            <ion-card-subtitle>Localisation : {{cache.city}}, {{cache.country}}</ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <!-- debut de la description uniquement -->
+            {{cache.description | slice:0:100}}...
+            <ion-button routerLink="/geocaches/{{cache.id}}" expand="block">Voir</ion-button>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button routerLink="/geocaches/new" expand="block">Ajouter une géocache</ion-button>
+
+
+</ion-content>

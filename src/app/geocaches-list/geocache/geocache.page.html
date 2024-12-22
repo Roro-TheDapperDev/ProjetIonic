@@ -1,0 +1,132 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Détails de la géocache</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">geocache</ion-title>
+    </ion-toolbar>
+  </ion-header>
+    <!-- boutons d'édition et de suppression -->
+    <div *ngIf="!editMode">
+      <ion-button (click)="toggleEditMode()">Editer</ion-button>
+      <ion-button (click)="delete()">Supprimer</ion-button>
+    </div>
+
+    <div *ngIf="editMode">
+      <ion-button (click)="saveEdit()">Sauvegarder</ion-button>
+      <ion-button (click)="toggleEditMode()">Annuler</ion-button>
+    </div>
+
+  <div *ngIf="!editMode">
+  <!-- affichage de la géocache -->
+    <ion-card>
+      <!-- titre et image sur la même ligne -->
+      <ion-card-header>
+        <ion-card-title> {{geocache.title}} </ion-card-title>
+        
+          <!-- affichage de l'image par défaut si l'image n'est pas renseignée -->
+          <div *ngIf="geocache.pictureLink === '' || geocache.pictureLink === null; else cacheImage">
+            <ion-img src="https://ionicframework.com/docs/img/demos/card-media.png" alt="geocache picture"></ion-img>
+          </div>
+
+          <!-- affichage de l'image de la géocache si elle est renseignée -->
+          <ng-template #cacheImage>
+            <ion-img [src]="geocache.pictureLink" alt="geocache picture"></ion-img>
+          </ng-template>>
+      </ion-card-header>
+
+      <!-- description -->
+      <ion-card-content>
+        <p>{{geocache.description}}</p>
+      </ion-card-content>
+
+      <!-- localisation -->
+      <ion-card-content>
+        <p style="font-weight: bolder;">Comment trouver la géocache ?</p>
+        <p>La géocache est située à {{geocache.city}}, {{geocache.country}}</p>
+        <p>Coordonnées GPS : {{geocache.latitude}}, {{geocache.longitude}}</p>
+      </ion-card-content>
+
+      <ion-card-content>
+        <p> S'y rendre </p>
+        <ion-button (click)="openMaps(geocache.latitude, geocache.longitude)">Ouvrir la carte</ion-button>
+      </ion-card-content>
+
+      <!-- indice et réponse 'masqués pour l'instant' -->
+      <ion-card-content>
+        <ion-button expand="block" (click)="toggleHint()">
+          {{ showHint ? 'Masquer l\'indice' : 'Afficher l\'indice' }}
+        </ion-button>
+        <div *ngIf="showHint" class="hint-content">
+          <p>Indice : {{geocache.hint}}</p>
+        </div>
+      </ion-card-content>
+
+      <ion-card-content>
+        <ion-button expand="block" (click)="toggleAnswer()">
+          {{ showAnswer ? 'Masquer la réponse' : 'Afficher la réponse' }}
+        </ion-button>
+        <div *ngIf="showAnswer" class="answer-content">
+          <p>Réponse : {{geocache.answer}}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  <!-- formulaire d'édition de la géocache -->
+  <div *ngIf="editMode">
+    <ion-item>
+      <ion-label position="floating">Titre</ion-label>
+      <ion-input [(ngModel)]="geocache.title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea 
+      [(ngModel)]="geocache.description"
+      autoGrow="true"
+    
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Image (url)</ion-label>
+      <ion-input [(ngModel)]="geocache.pictureLink"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Latitude</ion-label>
+      <ion-input [(ngModel)]="geocache.latitude"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Longitude</ion-label>
+      <ion-input [(ngModel)]="geocache.longitude"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Indice</ion-label>
+      <ion-input [(ngModel)]="geocache.hint"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Reponse</ion-label>
+      <ion-input [(ngModel)]="geocache.answer"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Ville</ion-label>
+      <ion-input [(ngModel)]="geocache.city"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Pays</ion-label>
+      <ion-input [(ngModel)]="geocache.country"></ion-input>
+    </ion-item>
+  </div>
+</ion-content>

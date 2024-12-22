@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Guides et outils du parfait géocacheur</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">tools</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <h1>Traceur GPS</h1>
+
+  <p> Vous avez trouvé l'endroit parfait où vous souhaitez cacher votre géocache ?</p>
+  <p> Récupérez vos coordonnées GPS pour les enregistrer dans votre nouvelle géocache !</p>
+
+  <!-- affichage des coordonnées GPS -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Coordonnées GPS</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Vous vous trouvez actuellement à :</p>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating" >Latitude</ion-label>
+        <ion-input [(ngModel)]="latitude" disabled="true"></ion-input>
+        <!-- bouton pour copier la latitude -->
+        <ion-button (click)="copyToClipboard(latitude, 'Latitude')">Copier</ion-button>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Longitude</ion-label>
+        <ion-input [(ngModel)]="longitude" disabled="true"></ion-input>
+        <!-- bouton pour copier la longitude -->
+        <ion-button (click)="copyToClipboard(longitude, 'Longitude')">Copier</ion-button>
+      </ion-item>
+
+      </ion-card-content>
+
+
+      <!-- geolocalisation -->
+
+      <!-- message d'alerte si l'utilisateur n'est pas géolocalisé -->
+      <div *ngIf="latitude === 0 && longitude === 0">
+        <p class="alert-text">Vous n'êtes pas encore géolocalisé ! </p>
+      </div>
+
+      <!-- bouton pour géolocaliser l'utilisateur -->
+      <ion-card-content>
+        <ion-button (click)="getCoordinates()">Me géolocaliser</ion-button>
+      </ion-card-content>
+  </ion-card>
+
+  <h1>Ressources utiles</h1>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Liens utiles</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Vous trouverez ci-dessous une liste de liens utiles pour vous aider dans votre quête de géocaches :</p>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Site officiel du géocaching</ion-label>
+          <ion-button href="https://www.geocaching.com" target="_blank">Visiter</ion-button>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Guide du geocaching</ion-label>
+          <ion-button href="https://www.geocaching.com/articles/Brochures/FR/FR_Geocaching_BROCHURE_online_color.pdf" target="_blank">Télécharger</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+    
+</ion-content>
