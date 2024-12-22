@@ -36,9 +36,9 @@ export class GeocacheService {
     });
   }
 
-  save(geocache: Geocache): any {
+  save(cache: Geocache): any {
     return new Observable(obs => {
-      this.geocacheRef.add({...geocache}).then(() => {
+      this.geocacheRef.add({...cache}).then(() => {
         obs.next();
       });
     });

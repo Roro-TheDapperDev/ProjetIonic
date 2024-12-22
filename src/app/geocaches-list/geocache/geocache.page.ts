@@ -31,6 +31,8 @@ export class GeocachePage implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    // premiére initialisation afin de ne pas avoir de problème d'affichage
+    this.geocache = new Geocache();
     this.geocacheService.get(id).subscribe((data: any) => {
       this.geocache = data;
     });
