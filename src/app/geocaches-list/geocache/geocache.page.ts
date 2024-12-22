@@ -81,14 +81,32 @@ export class GeocachePage implements OnInit {
 
   saveEdit() {
     this.geocacheService.update(this.geocache).subscribe(() => {
+      // modification effectuée
       this.presentToast();
       this.editMode = false;
+    },
+    // erreur detectée, pas de modification
+    (error : string) => {
+      const toast = this.toastController.create({
+        message: error,
+        duration: 2000
+      });
+      toast.then((toast) => {
+        toast.present();
+      });
     });
   }
 
   delete() {
     this.geocacheService.delete(this.geocache.id)
     this.router.navigate(['/geocaches']);
+    const toast = this.toastController.create({
+      message: 'La géocache a été supprimée',
+      duration: 2000
+    });
+    toast.then((toast) => {
+      toast.present();
+    });
   }
 
   // gestion avec Maps

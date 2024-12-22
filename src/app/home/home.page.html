@@ -1,19 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Geocaching v1.0 (Beta)
+      Roro's Geocaching
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true"> 
   <ion-content>
-    <p> Bienvenue sur Geocaching, l'application mobile qui vous permet de créer et de partager des géocaches avec d'autres utilisateurs !</p>
-
-
+    <p> Bienvenue sur Roro's Geocaching, l'application mobile qui vous permet de créer et de partager des géocaches avec d'autres utilisateurs !</p>
     <p> Découvrez le principe du géocaching en vidéo :</p>
+
     <ion-content class="ion-padding">
       <iframe width="100%" height="315" src="https://www.youtube.com/embed/vuFiLhhCNww?si=79Ga2MH2i_ydFsHK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </ion-content>
+
+    <ion-grid>
+
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Explorer les géocaches</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-button routerLink="/geocaches/new" expand="block">Créer une géocache</ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Découvrir le géocaching ainsi que les outils de l'application</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-button routerLink="/about" expand="block">En savoir plus</ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        
+      </ion-row>
+
+    </ion-grid>
   </ion-content>
 </ion-content>

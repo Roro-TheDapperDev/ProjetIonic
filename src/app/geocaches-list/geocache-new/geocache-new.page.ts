@@ -38,8 +38,19 @@ export class GeocacheNewPage implements OnInit {
 
   add(){
     this.geocacheService.save(this.geocache).subscribe(() => {
+      // reussite
       this.geocache = new Geocache();
       this.presentToast();
+    },
+    // erreur detectée
+    (error : string) => {
+      const toast = this.toastController.create({
+        message: error,
+        duration: 2000
+      });
+      toast.then((toast) => {
+        toast.present();
+      });
     });
   }
 
